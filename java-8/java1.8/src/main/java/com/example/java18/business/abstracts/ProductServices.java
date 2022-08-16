@@ -16,11 +16,11 @@ public interface ProductServices {
 
 	DataResult<Product> getByProductName(String productName);
 
-	DataResult<Product> getByProductNameAndCategoryID(String productName, int categoryID);
+	DataResult<Product> getByProductNameAndCategory(String productName, int categoryID);
 
-	DataResult<List<Product>> getByProductNameOrCategoryID(String productName, int categoryID);
+	DataResult<List<Product>> getByProductNameOrCategory(String productName, int categoryID);
 
-	DataResult<List<Product>> getByCategoryIDIn(List<Integer> categories);
+	DataResult<List<Product>> getByCategoryIn(List<Integer> categories);
 
 	DataResult<List<Product>> getByProductNameContains(String productName);
 

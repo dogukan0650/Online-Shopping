@@ -50,14 +50,14 @@ public class ProductsController {
 	
 	
 	@GetMapping("/getByProductNameAndCategoryID")
-	public DataResult<Product> getByProductNameAndCategoryID(@RequestParam("productName") String productName, @RequestParam("categoryID") int categoryID){
-		return this.productService.getByProductNameAndCategoryID(productName, categoryID);
+	public DataResult<Product> getByProductNameAndCategory(@RequestParam("productName") String productName, @RequestParam("categoryID") int categoryID){
+		return this.productService.getByProductNameAndCategory(productName, categoryID);
 	}
 
 	
 	@GetMapping("/getByCategoryIDIn")
-	public DataResult<List<Product>> getByCategoryIDIn( @RequestParam("categoryID") List<Integer> categoryID){
-		return this.productService.getByCategoryIDIn(categoryID);
+	public DataResult<List<Product>> getByCategoryIn( @RequestParam("categoryID") List<Integer> categoryID){
+		return this.productService.getByCategoryIn(categoryID);
 	}
 	
 	

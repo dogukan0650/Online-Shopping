@@ -24,56 +24,68 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="orders")
+@Table(name = "orders")
 public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="orderID", nullable = false)
+	@Column(name = "ID", nullable = false)
 	private int orderID;
-	
-	
-	@Column(name="sellerID", nullable = false)  /// array olması gerekli
-	private List<Integer> sellerID;
-	
-	@Column(name="productID")					/// array olması gerekli
-	private List<Integer> productID;
-	
-	@Column(name="productAmount",nullable = false )  //// array olması gerekli
-	private List<Integer> productAmount;
-	
-	@Column(name="price")						/// array olması gerekli olabilir 
-	private double totalPrice = 0.0;
-	
-	@Column(name="address", nullable = false)
-	private String address="";
 
-	@Column(name="status", nullable = false)
-	private String orderStatus="";
-	
-	@Column(name="orderDate", nullable = false)
+	@Column(name = "sellerID", nullable = false) /// array olması gerekli
+	private Integer sellerID;
+	/*
+	 * @Column(name="productID") /// array olması gerekli private List<Integer>
+	 * productID;
+	 * 
+	 * @Column(name="productAmount",nullable = false ) //// array olması gerekli
+	 * private int productAmount;
+	 * 
+	 * @Column(name="price") /// array olması gerekli olabilir private double
+	 * totalPrice = 0.0;
+	 * 
+	 * burası order has many products bağlantısından dolayı gelecek kısım
+	 */
+
+	@Column(name = "price")
+	private double totalPrice;
+
+	public void setTotalPrice(List<Product> products) {
+		for (Product prod : products) {
+			totalPrice = totalPrice + prod.getPrice();
+		}
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	@Column(name = "address", nullable = false)
+	private String address = "";
+
+	@Column(name = "status", nullable = false)
+	private String orderStatus = "";
+
+	@Column(name = "orderDate", nullable = false)
 	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	private Date date;
-	
+
 	@Column(name = "is_deleted", nullable = false)
-	private boolean is_order_deleted = false;
-	
-	
+	private boolean is_order_deleted = false; 
+
 	//// relation types.
-	
+
 	@ManyToOne
 	@JoinColumn(name = "customerID")
-	private Customer customer;		/* one customer has many orders. Relation set by customerID*/
-	
-	
-	@OneToMany(mappedBy = "order")
-	private List<Seller> seller;
-	
+	private Customer customer; /* one customer has many orders. Relation set by customerID */
+
+
 	@OneToMany(mappedBy = "order")
 	private List<Product> product;
-	
+ 
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Transaction transaction;
-	
-	// sellerID ler product sellerID den gelecek o yüzden ona göre bir ayarlama yap ve sellerID ler list olmalı (1den fazla satıcıdan order olabilir.)
+ 
+	// sellerID ler product sellerID den gelecek o yüzden ona göre bir ayarlama yap
+	// ve sellerID ler list olmalı (1den fazla satıcıdan order olabilir.)
 }

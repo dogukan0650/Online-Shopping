@@ -52,7 +52,7 @@ public class Admin {
 
 	
 	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userID")
+    @JoinColumn(name = "ID")
     private User user;
 	
 }

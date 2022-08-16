@@ -40,21 +40,21 @@ public class ProductManager implements ProductServices{
 	}
 
 	@Override
-	public DataResult<Product> getByProductNameAndCategoryID(String productName, int categoryID) {
+	public DataResult<Product> getByProductNameAndCategory(String productName, int categoryID) {
 		return new SuccessDataResult<Product>
-		(this.productDao.getByProductNameAndCategoryID(productName, categoryID), "Data successfully listed!");
+		(this.productDao.getByProductNameAndCategory(productName, categoryID), "Data successfully listed!");
 	}
 
 	@Override
-	public DataResult<List<Product>> getByProductNameOrCategoryID(String productName, int categoryID) {
+	public DataResult<List<Product>> getByProductNameOrCategory(String productName, int categoryID) {
 		return new SuccessDataResult<List<Product>>
-		(this.productDao.getByProductNameOrCategoryID(productName, categoryID), "Data successfully listed!");
+		(this.productDao.getByProductNameOrCategory(productName, categoryID), "Data successfully listed!");
 	}
 
 	@Override
-	public DataResult<List<Product>> getByCategoryIDIn(List<Integer> categories) {
+	public DataResult<List<Product>> getByCategoryIn(List<Integer> categories) {
 		return new SuccessDataResult<List<Product>>
-		(this.productDao.getByCategoryIDIn(categories), "Data successfully listed!");
+		(this.productDao.getByCategoryIn(categories), "Data successfully listed!");
 	}
 
 	@Override

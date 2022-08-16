@@ -32,11 +32,6 @@ public class Transaction {
 	@Column(name="id", nullable = false)
 	private int transactionID;
 	
-	@Column(name="customerID", nullable = false)
-	private int customerID;
-
-	@Column(name="sellerID", nullable = false)
-	private int sellerID;
 	
 	@Column(name="amount", nullable = false)
 	private double amount;
@@ -54,7 +49,7 @@ public class Transaction {
 	
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="customerID")
 	private Customer customer;
 	

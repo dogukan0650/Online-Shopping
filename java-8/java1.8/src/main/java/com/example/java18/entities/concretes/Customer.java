@@ -13,6 +13,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +25,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","orders"})
+
 @Table(name="customer")
 public class Customer{
 		
@@ -39,9 +45,11 @@ public class Customer{
 		private String surname="";
 		
 		@Column(name="age")
+		@ColumnDefault("18")
 		private int age;
 		
 		@Column(name="gender")
+		@ColumnDefault("male")
 		private String gender;
 		
 		@Column(name="username",nullable = false )
@@ -61,15 +69,11 @@ public class Customer{
 		
 		
 		@OneToOne(fetch = FetchType.LAZY)
-	    @JoinColumn(name = "userID")
+	    @JoinColumn(name = "ID")
 	    private User user;
 		
 
 		@OneToMany(mappedBy = "customer")
 		private List<Order> order;
-		
-		@OneToMany(mappedBy = "customer")
-		private List<Transaction> transaction;
-		
 		
 }

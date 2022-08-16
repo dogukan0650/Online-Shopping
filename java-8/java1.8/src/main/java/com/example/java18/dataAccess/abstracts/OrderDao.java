@@ -11,6 +11,7 @@ public interface OrderDao extends JpaRepository<Order, Integer> {
 	
 	Order getByOrderID(int orderID);
 	
+	@Query("from Order where customer.customerID=:customerID")
 	List<Order> getByCustomerID(int customerID);
 	
 	List<Order> getBySellerID(int sellerID);

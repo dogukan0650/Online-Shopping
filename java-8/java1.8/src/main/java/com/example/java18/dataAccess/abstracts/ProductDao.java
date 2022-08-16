@@ -18,17 +18,17 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
 	
 	Product getByProductName(String productName);
 	
-	Product getByProductNameAndCategoryID(String productName, int categoryID);
+	Product getByProductNameAndCategory(String productName, int categoryID);
 	
-	List<Product> getByProductNameOrCategoryID(String productName, int categoryID);
+	List<Product> getByProductNameOrCategory(String productName, int categoryID);
 	
-	List<Product> getByCategoryIDIn(List<Integer> categories);
+	List<Product> getByCategoryIn(List<Integer> categories);
 	
 	List<Product> getByProductNameContains(String productName);
 	
 	List<Product> getByProductNameStartsWith(String productName);
 	
-	@Query("from Product where productName=:productName and categoryID=:categoryID" /*,nativeQuery=true*//*false de olacak*/)
+	@Query("from Product where productName=:productName and category.categoryID=:categoryID" /*,nativeQuery=true*//*false de olacak*/)
 	List<Product> getByNameAndCategory(String productName,int categoryID /*0, @Param bunu da kullan.*/);
 	
 }

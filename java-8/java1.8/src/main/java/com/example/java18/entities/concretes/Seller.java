@@ -25,9 +25,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "seller")
 public class Seller {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="sellerID", nullable = false)
+	@Column(name="ID", nullable = false)
 	private int sellerID;
 	
 	@Column(name="accountType", nullable = false)
@@ -52,14 +53,15 @@ public class Seller {
 	private boolean is_user_deleted=false;
 	
 	
+	
+	
 	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userID")
+    @JoinColumn(name = "ID")
     private User user;
 	
 	
 	@OneToMany(mappedBy = "seller")
 	private List<Product> product;
-	
 	
 
 }
